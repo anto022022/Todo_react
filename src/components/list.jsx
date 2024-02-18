@@ -17,6 +17,7 @@ export const List = ({
   const [paginate, setPagination] = useState(0);
   // let originalArray = list ? JSON.parse(JSON.stringify([...list])) : [];
   // console.log("divided valkus", Math.ceil(total / 10));
+  console.log(total);
   useEffect(() => {
     setTaskList(JSON.parse(JSON.stringify([...list])));
     setPagination(Math.ceil(56 / 10));
@@ -51,6 +52,7 @@ export const List = ({
               <input
                 type="checkbox"
                 checked={ele.is_completed}
+                disabled={ele.is_completed}
                 value={ele.is_completed}
                 onChange={() => checkTask(ele._id)}
               />{" "}
@@ -67,20 +69,23 @@ export const List = ({
               save
             </button>
           ) : (
-            <>
-              <button
-                // onClick={() => editTask({ _id: ele._id, task_name: ele.task_name })}
-                onClick={() => editFiled(ele, index)}
-              >
-                <EditIcon />
-              </button>
-              <button onClick={() => deleteTask(ele._id)}>
-                <DeleteIcon />
-              </button>
-            </>
+            !ele.is_completed && (
+              <>
+                <button
+                  // onClick={() => editTask({ _id: ele._id, task_name: ele.task_name })}
+                  onClick={() => editFiled(ele, index)}
+                >
+                  <EditIcon />
+                </button>
+                <button onClick={() => deleteTask(ele._id)}>
+                  <DeleteIcon />
+                </button>
+              </>
+            )
           )}
         </div>
       ))}
+      {taskList.length == 0 ? <div>Add tasks</div> : null}
       {total > 10 ? (
         <div className="pagination">
           {Array.from({ length: paginate }).map((ele, index) => (

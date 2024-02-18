@@ -9,7 +9,7 @@ const ToDoList = () => {
   const [task, setTask] = useState("");
   const [message, setMessage] = useState("");
   const [taskList, setTaskList] = useState([]);
-  const [totalTask, setTotalTask] = useState("");
+  const [totalTask, setTotalTask] = useState(0);
   const [pageCount, setPageCount] = useState(1);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const ToDoList = () => {
       .get(`${import.meta.env.VITE_URL}list?page=${pageCount}&limit=${count}`)
       .then((res) => {
         console.log("res-->", res);
+        if (!res.data.success) return internalReset();
         setTaskList(res.data.data.list);
         setTotalTask(res.data.data.total);
       });
@@ -100,12 +101,21 @@ const ToDoList = () => {
       .then((res) => {
         console.log(res);
         setMessage(res.data.message);
-        getTask();
+        internalReset();
       })
       .catch((err) => {
         setMessage(err.data.message);
       });
   };
+
+  const internalReset = () => {
+    setMessage("");
+    setPageCount(1);
+    setTaskList([]);
+    setTask("");
+    setTotalTask(0);
+  };
+
   return (
     <div className="todo-list">
       <section>
