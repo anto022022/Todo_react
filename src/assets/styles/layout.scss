@@ -1,0 +1,14 @@
+.wrapper{
+    background-color: #9100cd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .outlet-wrapper {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 5px;
+        padding: 10px;
+        width: 50%;
+        height: 720px;
+        background: #ec93ff;
+    }
+}

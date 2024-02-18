@@ -1,0 +1,14 @@
+.pagination {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  .dot {
+    width: 6px;
+    cursor: pointer;
+    height: 6px;
+    background: red;
+    border: 1px solid red;
+    border-radius: 10px;
+    margin: 10px;
+  }
+}

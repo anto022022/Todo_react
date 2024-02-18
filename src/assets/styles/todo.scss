@@ -1,0 +1,11 @@
+.todo-list {
+  height: 100%;
+  section {
+    &:nth-child(1) {
+    }
+    &:nth-child(2) {
+      height: 70%;
+      overflow: auto;
+    }
+  }
+}
