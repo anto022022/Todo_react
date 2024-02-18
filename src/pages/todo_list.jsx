@@ -1,5 +1,6 @@
 //  import React, { lazy, Suspense } from "react";
 import { List } from "../components/list";
+import { SimplePagination } from "../components/simplePagination";
 import "../assets/styles/common.scss";
 import "../assets/styles/todo.scss";
 import axios from "axios";
@@ -118,17 +119,28 @@ const ToDoList = () => {
 
   return (
     <div className="todo-list">
-      <section>
-        {" "}
-        <input
-          type="text"
-          value={task}
-          onChange={(event) => setTask(event.target.value)}
-        />
-        <button onClick={addTasks}>Add task</button>
-        <button onClick={() => getTask()}>Refresh</button>
-        <button onClick={deleteAll}>Reset Tasks</button>
-        <div>{message}</div>
+      <section className="menu-section">
+        <div className="add-task-div">
+          <input
+            type="text"
+            value={task}
+            placeholder="Your task here..."
+            onChange={(event) => setTask(event.target.value)}
+          />
+          <button onClick={addTasks}>Add task</button>{" "}
+        </div>
+        <div className="task-actions">
+          <button onClick={() => getTask()}>Refresh</button>
+          <button onClick={deleteAll}>Reset Tasks</button>
+        </div>
+        <div
+          className="message-div"
+          style={
+            message ? { background: "#d87bff" } : { background: "transparent" }
+          }
+        >
+          {message}
+        </div>
       </section>
       <section>
         {" "}
@@ -137,6 +149,14 @@ const ToDoList = () => {
           editTask={(val) => submitTask(val)}
           checkTask={(val) => checkTask(val)}
           deleteTask={(val) => deleteTask(val)}
+          total={totalTask}
+          pagination={(val) => setPageCount(val)}
+        />
+      </section>
+      <section>
+        {" "}
+        <SimplePagination
+          list={taskList}
           total={totalTask}
           pagination={(val) => setPageCount(val)}
         />

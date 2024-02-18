@@ -1,11 +1,63 @@
 .todo-list {
-  height: 100%;
+  height: 95%;
   section {
     &:nth-child(1) {
+      height: 25%;
+      display: flex;
+      flex-direction: column;
+      .add-task-div {
+        display: flex;
+        justify-content: center;
+        margin: 5px 0;
+        input {
+          width: 50%;
+          margin-right: 10px;
+        }
+      }
+      .task-actions {
+        text-align: center;
+        button {
+          margin: 5px;
+        }
+      }
+      .message-div {
+        text-align: center;
+        background: #d87bff;
+        padding: 2px;
+        margin: 3px;
+        border-radius: 10px;
+        min-height: 24px;
+        margin-bottom: 5px;
+      }
     }
     &:nth-child(2) {
-      height: 70%;
+      height: 65%;
       overflow: auto;
+      background: #e87fff;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    &:nth-child(3) {
+      height: 10%;
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #dd5af9;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #9100cd;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #81039d;
 }

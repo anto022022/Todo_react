@@ -6,8 +6,12 @@ function App() {
   return (
     <div className="wrapper">
       <section className="outlet-wrapper">
-        <PlaylistAddCheckIcon className="icon" /> <h2>To-Do list</h2>
-        <Outlet />
+        <section className="header">
+          <PlaylistAddCheckIcon className="icon" /> <h2>To-Do list</h2>
+        </section>
+        <section className="outlet">
+          <Outlet />
+        </section>
       </section>
     </div>
   );

@@ -1,14 +1,26 @@
-.wrapper{
-    background-color: #9100cd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .outlet-wrapper {
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        border-radius: 5px;
-        padding: 10px;
-        width: 50%;
-        height: 720px;
-        background: #ec93ff;
+.wrapper {
+  background-color: #9100cd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .outlet-wrapper {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 50%;
+    height: 90%;
+    background: #ec93ff;
+    .header {
+      height: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .icon {
+        font-size: 30px;
+      }
     }
+    .outlet {
+      height: 90%;
+    }
+  }
 }

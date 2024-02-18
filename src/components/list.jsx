@@ -20,7 +20,6 @@ export const List = ({
   console.log(total);
   useEffect(() => {
     setTaskList(JSON.parse(JSON.stringify([...list])));
-    setPagination(Math.ceil(56 / 10));
     setPagination(Math.ceil(total / 10));
   }, [list]);
 
@@ -40,7 +39,7 @@ export const List = ({
   return (
     <div>
       {taskList.map((ele, index) => (
-        <div key={ele._id}>
+        <div className="checkbox-list" key={ele._id}>
           {ele.isEditing ? (
             <input
               type="text"
@@ -48,16 +47,19 @@ export const List = ({
               onChange={(event) => setCurrentValue(event.target.value)}
             />
           ) : (
-            <>
-              <input
-                type="checkbox"
-                checked={ele.is_completed}
-                disabled={ele.is_completed}
-                value={ele.is_completed}
-                onChange={() => checkTask(ele._id)}
-              />{" "}
+            <div className="checkbox-wrapper">
+              <div className="checkbox-style">
+                <input
+                  type="checkbox"
+                  className="box"
+                  checked={ele.is_completed}
+                  disabled={ele.is_completed}
+                  value={ele.is_completed}
+                  onChange={() => checkTask(ele._id)}
+                />
+              </div>
               {ele.task_name}
-            </>
+            </div>
           )}
 
           {ele.isEditing ? (
@@ -70,7 +72,7 @@ export const List = ({
             </button>
           ) : (
             !ele.is_completed && (
-              <>
+              <div className="checkbox-actions">
                 <button
                   // onClick={() => editTask({ _id: ele._id, task_name: ele.task_name })}
                   onClick={() => editFiled(ele, index)}
@@ -80,22 +82,13 @@ export const List = ({
                 <button onClick={() => deleteTask(ele._id)}>
                   <DeleteIcon />
                 </button>
-              </>
+              </div>
             )
           )}
         </div>
       ))}
-      {taskList.length == 0 ? <div>Add tasks</div> : null}
-      {total > 10 ? (
-        <div className="pagination">
-          {Array.from({ length: paginate }).map((ele, index) => (
-            <div
-              className="dot"
-              key={index}
-              onClick={() => pagination(index + 1)}
-            ></div>
-          ))}
-        </div>
+      {taskList.length == 0 ? (
+        <div className="empty-list">Add tasks!</div>
       ) : null}
     </div>
   );
