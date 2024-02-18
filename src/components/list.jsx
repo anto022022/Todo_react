@@ -3,21 +3,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import "../assets/styles/list.scss";
 
-export const List = ({
-  list,
-  editTask,
-  deleteTask,
-  checkTask,
-  total,
-  pagination,
-}) => {
+export const List = ({ list, editTask, deleteTask, checkTask, total }) => {
   const [editing, setEditing] = useState(false);
   const [currentValue, setCurrentValue] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [paginate, setPagination] = useState(0);
-  // let originalArray = list ? JSON.parse(JSON.stringify([...list])) : [];
-  // console.log("divided valkus", Math.ceil(total / 10));
-  console.log(total);
+
   useEffect(() => {
     setTaskList(JSON.parse(JSON.stringify([...list])));
     setPagination(Math.ceil(total / 10));
@@ -58,7 +49,9 @@ export const List = ({
                   onChange={() => checkTask(ele._id)}
                 />
               </div>
-              {ele.task_name}
+              <span className={ele.is_completed ? "completed" : ""}>
+                {ele.task_name} {ele.is_completed ? "(Task Completed!)" : null}
+              </span>
             </div>
           )}
 
