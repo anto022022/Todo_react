@@ -1,4 +1,3 @@
-//  import React, { lazy, Suspense } from "react";
 import { List } from "../components/list";
 import { SimplePagination } from "../components/simplePagination";
 import "../assets/styles/common.scss";
@@ -14,7 +13,6 @@ const ToDoList = () => {
   const [pageCount, setPageCount] = useState(1);
 
   useEffect(() => {
-    console.log("effect");
     getTask();
   }, [pageCount]);
 
@@ -23,7 +21,6 @@ const ToDoList = () => {
     axios
       .get(`${import.meta.env.VITE_URL}list?page=${pageCount}&limit=${count}`)
       .then((res) => {
-        console.log("res-->", res);
         if (!res.data.success) return internalReset();
         setTaskList(res.data.data.list);
         setTotalTask(res.data.data.total);
@@ -40,7 +37,6 @@ const ToDoList = () => {
     axios
       .post(import.meta.env.VITE_URL + "addTask", { task_name: task })
       .then((res) => {
-        // console.log(res);
         setTask("");
         setMessage(res.data.message);
         getTask();
@@ -55,7 +51,6 @@ const ToDoList = () => {
     axios
       .patch(import.meta.env.VITE_URL + "patchTask", val)
       .then((res) => {
-        // console.log(res);
         setTask("");
         setMessage(res.data.message);
         getTask();
@@ -70,7 +65,6 @@ const ToDoList = () => {
     axios
       .patch(import.meta.env.VITE_URL + "completeTask", { _id: id })
       .then((res) => {
-        console.log(res);
         setTask("");
         setMessage(res.data.message);
         getTask();
@@ -82,11 +76,9 @@ const ToDoList = () => {
 
   const deleteTask = (id) => {
     setMessage("");
-    console.log("id", id);
     axios
       .patch(import.meta.env.VITE_URL + "deleteTask", { _id: id })
       .then((res) => {
-        console.log(res);
         setMessage(res.data.message);
         getTask();
       })
@@ -100,7 +92,6 @@ const ToDoList = () => {
     axios
       .delete(import.meta.env.VITE_URL + "deleteAll")
       .then((res) => {
-        console.log(res);
         setMessage(res.data.message);
         internalReset();
       })

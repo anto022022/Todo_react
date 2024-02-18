@@ -66,10 +66,7 @@ export const List = ({ list, editTask, deleteTask, checkTask, total }) => {
           ) : (
             !ele.is_completed && (
               <div className="checkbox-actions">
-                <button
-                  // onClick={() => editTask({ _id: ele._id, task_name: ele.task_name })}
-                  onClick={() => editFiled(ele, index)}
-                >
+                <button onClick={() => editFiled(ele, index)}>
                   <EditIcon />
                 </button>
                 <button onClick={() => deleteTask(ele._id)}>
