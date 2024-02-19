@@ -149,8 +149,6 @@ const ToDoList = () => {
           editTask={(val) => submitTask(val)}
           checkTask={(val) => checkTask(val)}
           deleteTask={(val) => deleteTask(val)}
-          total={totalTask}
-          pagination={(val) => setPageCount(val)}
         />
       </section>
       <section>

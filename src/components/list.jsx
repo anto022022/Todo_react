@@ -3,16 +3,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import "../assets/styles/list.scss";
 
-export const List = ({ list, editTask, deleteTask, checkTask, total }) => {
-  const [editing, setEditing] = useState(false);
+export const List = ({ list, editTask, deleteTask, checkTask }) => {
   const [currentValue, setCurrentValue] = useState("");
   const [taskList, setTaskList] = useState([]);
-  const [paginate, setPagination] = useState(0);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     setTaskList(JSON.parse(JSON.stringify([...list])));
-    setPagination(Math.ceil(total / 10));
   }, [list]);
 
   if (!list) return <div>no data found</div>;
@@ -24,7 +21,6 @@ export const List = ({ list, editTask, deleteTask, checkTask, total }) => {
     newArr[index]["isEditing"] = true;
     setTaskList(newArr);
     val["isEditing"] = true;
-    setEditing(true);
     setCurrentValue(val.task_name);
   };
 
