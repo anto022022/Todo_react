@@ -11,6 +11,7 @@ const ToDoList = () => {
   const [taskList, setTaskList] = useState([]);
   const [totalTask, setTotalTask] = useState(0);
   const [pageCount, setPageCount] = useState(1);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getTask();
@@ -33,7 +34,14 @@ const ToDoList = () => {
   };
 
   const addTasks = () => {
+    if (!task.trim()) {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+    }
     setMessage("");
+
     axios
       .post(import.meta.env.VITE_URL + "addTask", { task_name: task })
       .then((res) => {
@@ -115,6 +123,7 @@ const ToDoList = () => {
           <input
             type="text"
             value={task}
+            className={error ? "input-error" : ""}
             placeholder="Your task here..."
             onChange={(event) => setTask(event.target.value)}
           />

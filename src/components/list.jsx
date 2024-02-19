@@ -8,6 +8,7 @@ export const List = ({ list, editTask, deleteTask, checkTask, total }) => {
   const [currentValue, setCurrentValue] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [paginate, setPagination] = useState(0);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setTaskList(JSON.parse(JSON.stringify([...list])));
@@ -34,6 +35,7 @@ export const List = ({ list, editTask, deleteTask, checkTask, total }) => {
           {ele.isEditing ? (
             <input
               type="text"
+              className={error ? "input-error" : ""}
               value={currentValue}
               onChange={(event) => setCurrentValue(event.target.value)}
             />
@@ -57,9 +59,15 @@ export const List = ({ list, editTask, deleteTask, checkTask, total }) => {
 
           {ele.isEditing ? (
             <button
-              onClick={() =>
-                editTask({ _id: ele._id, task_name: currentValue })
-              }
+              onClick={() => {
+                if (!currentValue.trim()) {
+                  setError(true);
+                  return;
+                } else {
+                  setError(false);
+                }
+                editTask({ _id: ele._id, task_name: currentValue });
+              }}
             >
               save
             </button>
